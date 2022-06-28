@@ -16,7 +16,7 @@ db_clean:
 	psql postgres://postgres:password@0.0.0.0:5432/postgres -f sql/clean.sql
 
 build: 
-	go build api/*.go
+	go build -o main ./api
 
 run: 
-	go build api/*.go && ./main
+	make build && ./main

@@ -3,8 +3,6 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 	"regexp"
 
 	"github.com/google/uuid"
@@ -42,17 +40,6 @@ func insert(args query) {
 	fmt.Println("New record ID is:", id)
 }
 
-func fetchUrl(url string) string {
-
-	resp, err := http.Get(url)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	body, err := ioutil.ReadAll(resp.Body)
-	return string(body)
-}
-
 func main() {
 
 	url := "https://uk.indeed.com/viewjob?jk=40042cf599138868"
@@ -67,5 +54,6 @@ func main() {
 		job_title: "Software Engineer", // TODO: fetch dynamically
 	}
 
-	insert(input)
+	job_id := insertJob(input)
+	insertSkill(job_id)
 }
