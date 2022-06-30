@@ -20,6 +20,12 @@ CREATE TYPE skill_category AS ENUM(
    'Container Orchestration',
    'Practice'
 );
+CREATE TABLE synonyms(
+   word varchar(255) PRIMARY KEY,
+   synonym varchar(255)
+);
+INSERT INTO synonyms
+VALUES ('Kubernetes', 'k8s');
 CREATE TABLE skills(
    skill varchar(255) PRIMARY KEY,
    category skill_category

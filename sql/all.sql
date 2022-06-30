@@ -5,6 +5,8 @@ SELECT *
 FROM jobs;
 SELECT *
 FROM job_skills;
+SELECT *
+FROM synonyms;
 -- COUNT JOB TITLES
 SELECT job_title,
     COUNT(*)

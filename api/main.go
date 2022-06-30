@@ -1,11 +1,9 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"regexp"
 
-	"github.com/google/uuid"
 	_ "github.com/lib/pq"
 )
 
@@ -20,24 +18,12 @@ const (
 type query struct {
 	job_title string
 	url       string
+	country   string
 }
 
-func insert(args query) {
-	// TODO: Extract DB connection to separate function
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
-	db, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
-	sqlStatement := `INSERT INTO jobs VALUES ($1, $2, $3) RETURNING job_id`
-	id := ""
-	err = db.QueryRow(sqlStatement, uuid.New().String(), args.job_title, args.url).Scan(&id)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("New record ID is:", id)
+type skillQuery struct {
+	job_id string
+	skill  string
 }
 
 func main() {
@@ -49,11 +35,22 @@ func main() {
 	isAWS, _ := regexp.MatchString("AWS", body)
 	fmt.Println(isAWS)
 
+	// TODO: Validate and throw error
 	input := query{
 		url:       url,
-		job_title: "Software Engineer", // TODO: fetch dynamically
+		country:   "United Kingdom",
+		job_title: "Cloud Engineer", // TODO: fetch dynamically
 	}
 
 	job_id := insertJob(input)
-	insertSkill(job_id)
+	skill := "k8s" // TODO: Don't hardcode
+
+	word := checkSynonym(skill)
+
+	input2 := skillQuery{
+		job_id: job_id,
+		skill:  word,
+	}
+
+	insertSkill(input2)
 }
