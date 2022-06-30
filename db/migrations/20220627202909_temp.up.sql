@@ -12,7 +12,7 @@ CREATE TYPE job_title AS ENUM(
    'Site Reliability Engineer',
    'Cloud Operations'
 );
-CREATE TYPE countries AS ENUM('United Kingdom', 'US', 'Global');
+CREATE TYPE countries AS ENUM('United Kingdom', 'US', 'Global', 'Remote');
 CREATE TYPE skill_category AS ENUM(
    'Language',
    'Cloud Platform',
@@ -26,6 +26,8 @@ CREATE TABLE synonyms(
 );
 INSERT INTO synonyms
 VALUES ('Kubernetes', 'k8s');
+INSERT INTO synonyms
+VALUES ('Remote', 'remote-first');
 CREATE TABLE skills(
    skill varchar(255) PRIMARY KEY,
    category skill_category
@@ -56,29 +58,3 @@ CREATE TABLE job_skills(
    job_id varchar(255) REFERENCES jobs(job_id),
    skill varchar(255) REFERENCES skills(skill)
 );
--- Reference data seeds
-INSERT INTO jobs
-VALUES (
-      'fake-uuid1',
-      'Cloud Engineer',
-      'United Kingdom',
-      'https://google.com'
-   );
-INSERT INTO job_skills
-VALUES ('fake-uuid1', 'AWS');
-INSERT INTO job_skills
-VALUES ('fake-uuid1', 'Azure');
-INSERT INTO job_skills
-VALUES ('fake-uuid1', 'Kubernetes');
--- Reference data seeds
-INSERT INTO jobs
-VALUES (
-      'fake-uuid2',
-      'Platform Engineer',
-      'United Kingdom',
-      'https://google.com'
-   );
-INSERT INTO job_skills
-VALUES ('fake-uuid2', 'Kubernetes');
-INSERT INTO job_skills
-VALUES ('fake-uuid2', 'AWS');

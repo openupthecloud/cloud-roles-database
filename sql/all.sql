@@ -7,6 +7,13 @@ SELECT *
 FROM job_skills;
 SELECT *
 FROM synonyms;
+-- GET ALL JOBS + SKILLS
+SELECT jobs.job_id,
+    jobs.country,
+    jobs.job_title,
+    job_skills.skill
+FROM job_skills
+    INNER JOIN jobs ON job_skills.job_id = jobs.job_id;
 -- COUNT JOB TITLES
 SELECT job_title,
     COUNT(*)

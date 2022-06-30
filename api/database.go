@@ -35,13 +35,13 @@ func checkSynonym(word string) string {
 	return word
 }
 
-func insertJob(args query) string {
+func insertJob(jobData JobData, url string) string {
 	// TODO: Don't close connection twice
 	db := getDb()
 	defer db.Close()
 	sqlStatement := `INSERT INTO jobs VALUES ($1, $2, $3, $4) RETURNING job_id`
 	id := ""
-	err := db.QueryRow(sqlStatement, uuid.New().String(), args.job_title, args.country, args.url).Scan(&id)
+	err := db.QueryRow(sqlStatement, uuid.New().String(), jobData.job_title, jobData.country, url).Scan(&id)
 	if err != nil {
 		panic(err)
 	}

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"regexp"
+	"os"
 
 	_ "github.com/lib/pq"
 )
@@ -15,12 +15,6 @@ const (
 	dbname   = "postgres"
 )
 
-type query struct {
-	job_title string
-	url       string
-	country   string
-}
-
 type skillQuery struct {
 	job_id string
 	skill  string
@@ -28,29 +22,26 @@ type skillQuery struct {
 
 func main() {
 
-	url := "https://uk.indeed.com/viewjob?jk=40042cf599138868"
+	// TODO: Cache contents for performance (and testing)
+	url := os.Args[1]
 
-	// TODO: insert into skills of DB
-	body := fetchUrl(url)
-	isAWS, _ := regexp.MatchString("AWS", body)
-	fmt.Println(isAWS)
+	// Step 1: Fetch URL body
+	body := fetchUrl(url) // TODO: insert into skills of DB
 
-	// TODO: Validate and throw error
-	input := query{
-		url:       url,
-		country:   "United Kingdom",
-		job_title: "Cloud Engineer", // TODO: fetch dynamically
-	}
+	// Step 2: Parse out data
+	parsedJobData := parseJobData(body)
 
-	job_id := insertJob(input)
+	// Step 3: Insert job data
+	job_id := insertJob(parsedJobData, url)
+
+	// Step 4: Insert skills data
 	skill := "k8s" // TODO: Don't hardcode
-
 	word := checkSynonym(skill)
-
 	input2 := skillQuery{
 		job_id: job_id,
 		skill:  word,
 	}
-
 	insertSkill(input2)
+
+	fmt.Println("Successfully imported: ", url)
 }

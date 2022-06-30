@@ -19,4 +19,7 @@ build:
 	go build -o main ./api
 
 run: 
-	make build && ./main
+	./run.sh
+
+test: 
+	go test ./api
