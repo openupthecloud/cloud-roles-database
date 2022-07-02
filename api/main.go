@@ -35,13 +35,8 @@ func main() {
 	job_id := insertJob(parsedJobData, url)
 
 	// Step 4: Insert skills data
-	skill := "k8s" // TODO: Don't hardcode
-	word := checkSynonym(skill)
-	input2 := skillQuery{
-		job_id: job_id,
-		skill:  word,
-	}
-	insertSkill(input2)
+	skills := parseSkillData(body)
+	insertSkill(skills, job_id)
 
 	fmt.Println("Successfully imported: ", url)
 }

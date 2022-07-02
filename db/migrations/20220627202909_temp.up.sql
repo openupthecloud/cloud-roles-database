@@ -17,7 +17,11 @@ CREATE TYPE skill_category AS ENUM(
    'Language',
    'Cloud Platform',
    'Certification',
+   'CI/CD',
+   'Databases',
    'Container Orchestration',
+   'Infrastructure As Code',
+   'Linux',
    'Practice'
 );
 CREATE TABLE synonyms(
@@ -37,6 +41,20 @@ VALUES ('Kubernetes', 'Container Orchestration');
 INSERT INTO skills
 VALUES ('AWS', 'Cloud Platform');
 INSERT INTO skills
+VALUES ('Azure SQL', 'Databases');
+INSERT INTO skills
+VALUES ('SQL Server', 'Databases');
+INSERT INTO skills
+VALUES ('Terraform', 'Infrastructure As Code');
+INSERT INTO skills
+VALUES ('Ansible', 'Infrastructure As Code');
+INSERT INTO skills
+VALUES ('Linux', 'Linux');
+INSERT INTO skills
+VALUES ('GitHub Actions', 'CI/CD');
+INSERT INTO skills
+VALUES ('Azure DevOps Pipelines', 'CI/CD');
+INSERT INTO skills
 VALUES ('Azure', 'Cloud Platform');
 INSERT INTO skills
 VALUES ('Python', 'Language');
@@ -46,6 +64,7 @@ INSERT INTO skills
 VALUES ('Distributed Systems', 'Practice');
 INSERT INTO skills
 VALUES ('AWS CCP', 'Certification');
+-- Make the URL the ID (allow upsert)
 CREATE TABLE jobs(
    /* TODO: UUID format */
    job_id varchar(255) PRIMARY KEY,

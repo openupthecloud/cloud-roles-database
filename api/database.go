@@ -48,15 +48,18 @@ func insertJob(jobData JobData, url string) string {
 	return id
 }
 
-func insertSkill(args skillQuery) {
+func insertSkill(skills SkillsList, job_id string) {
 	// TODO: Don't close connection twice
 	db := getDb()
 	defer db.Close()
 
-	sqlStatement := `INSERT INTO job_skills VALUES ($1, $2) RETURNING job_id`
-	id := ""
-	err := db.QueryRow(sqlStatement, args.job_id, args.skill).Scan(&id)
-	if err != nil {
-		panic(err)
+	for _, skill := range skills {
+		fmt.Println("Inserting skill:", skill)
+		sqlStatement := `INSERT INTO job_skills VALUES ($1, $2) RETURNING job_id`
+		id := ""
+		err := db.QueryRow(sqlStatement, job_id, skill).Scan(&id)
+		if err != nil {
+			panic(err)
+		}
 	}
 }
