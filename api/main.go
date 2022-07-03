@@ -21,9 +21,9 @@ type skillQuery struct {
 }
 
 func main() {
-
 	// TODO: Cache contents for performance (and testing)
 	url := os.Args[1]
+	fmt.Println("Starting import for: ", url)
 
 	// Step 1: Fetch URL body
 	body := fetchUrl(url) // TODO: insert into skills of DB

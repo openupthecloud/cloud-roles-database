@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"regexp"
 )
 
@@ -17,11 +18,12 @@ func parseJobData(body string) JobData {
 	countryRegex := regexp.MustCompile("Remote")
 	country := countryRegex.FindString(body)
 
-	// TODO: Extract from DB reference data
-	jobTitleRegex := regexp.MustCompile(`Cloud Engineer|Site Reliability Engineer|Platform Engineer|DevOps Engineer|Solutions Architect`)
-	job_title := jobTitleRegex.FindString(body)
+	fmt.Println(body)
 
-	// TODO: Validate and throw error
+	// TODO: Extract from DB reference data
+	jobTitleRegex := regexp.MustCompile(`Cloud Engineer|Site Reliability Engineer|Platform Engineer|DevOps Engineer|Solutions Architect|Support Engineer|IT Engineer|Security Engineer|Infrastructure Engineer|Backend Engineer|Software Developer|Cloud Operations`)
+	job_title := jobTitleRegex.FindString(body)
+	fmt.Println("Inserting job title:", job_title)
 	response := JobData{
 		country:   country,
 		job_title: job_title,

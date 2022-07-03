@@ -1,11 +1,7 @@
 tasks:
   - name: install-docker
-    init: |
-      sudo apt-get update && sudo apt-get -y install postgresql \
-      curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz \
-      sudo mv migrate /usr/bin
+    init: sudo apt-get update && sudo apt-get -y install postgresql && curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz && sudo mv migrate /usr/bin
     command: docker-compose up
-  - command: psql postgres://postgres:password@0.0.0.0:5432/postgres
 
 vscode:
   extensions:

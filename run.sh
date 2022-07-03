@@ -1,7 +1,5 @@
 #!/bin/bash
 
-make db_clean 
-make migrate_up 
 make build
 make test
 

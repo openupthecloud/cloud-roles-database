@@ -19,10 +19,11 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 - [x] Pull URLs from a text file (break new line)
 - [x] Automate the list collection of the URLs
 
-- [x] Search also for synonyms ("AWS Lambda", "Lambda", etc) and upper/lower for skills
+- [x] Add skill synonym support ("AWS Lambda", "Lambda", etc) and upper/lower for skills
+- [ ] Add title synonym support ("Cloud Engineer", etc)
 - [ ] Update the information on certifications
 - [ ] Update the information on niche cloud providers (digital ocean, etc)
-- [ ] Fix regex issues with Go / AI
+- [ ] Fix regex issues with Go / AI / Java / JavaScript (select only body?)
 - [ ] Read through some of the automated resumes, make sure to capture all skills
 
 - [ ] Update the README with getting started instructions
@@ -34,7 +35,7 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 - [ ] Fix issues with adjoining words (whitespace)
 - [ ] Extract years of experience?
 - [ ] Handle error states, such as incorrect parse, etc
-- [ ] Add unit tests for various resumes ()
+- [ ] Add unit tests for various resumes
 
 **Converting to Web App**
 - [ ] Find way to move the database to static storage
