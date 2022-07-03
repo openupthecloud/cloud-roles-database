@@ -35,7 +35,9 @@ func main() {
 	job_id := insertJob(parsedJobData, url)
 
 	// Step 4: Insert skills data
-	skills := parseSkillData(body)
+	synonyms := getSynonyms()
+	skillsReference := getSkillsReference()
+	skills := parseSkillData(body, skillsReference, synonyms)
 	insertSkill(skills, job_id)
 
 	fmt.Println("Successfully imported: ", url)

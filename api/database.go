@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"log"
 
 	"github.com/google/uuid"
 	_ "github.com/lib/pq"
@@ -18,21 +19,54 @@ func getDb() *sql.DB {
 	return db
 }
 
-func checkSynonym(word string) string {
+func getSynonyms() Synonyms {
 	// TODO: Don't close connection twice
 	db := getDb()
 	defer db.Close()
-	sqlStatement := `SELECT word FROM synonyms WHERE synonyms.synonym = $1`
-	returnedWord := ""
-	err := db.QueryRow(sqlStatement, word).Scan(&returnedWord)
+
+	sqlStatement := `SELECT skill, synonym FROM synonyms`
+	rows, err := db.Query(sqlStatement)
+	defer rows.Close()
 	if err != nil {
 		panic(err)
 	}
-	wordHasSynonym := len(returnedWord) > 0
-	if wordHasSynonym {
-		return returnedWord
+
+	response := make(map[string][]string)
+	for rows.Next() {
+		skill := ""
+		synonym := ""
+		err := rows.Scan(&skill, &synonym)
+		if err != nil {
+			log.Fatal(err)
+		}
+		response[skill] = append(response[skill], synonym)
 	}
-	return word
+
+	return response
+}
+
+func getSkillsReference() []string {
+	db := getDb()
+	defer db.Close()
+
+	sqlStatement := `SELECT skill FROM skills`
+	rows, err := db.Query(sqlStatement)
+	defer rows.Close()
+	if err != nil {
+		panic(err)
+	}
+
+	var skills []string
+	for rows.Next() {
+		skill := ""
+		err := rows.Scan(&skill)
+		if err != nil {
+			log.Fatal(err)
+		}
+		skills = append(skills, skill)
+	}
+
+	return skills
 }
 
 func insertJob(jobData JobData, url string) string {

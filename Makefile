@@ -9,9 +9,6 @@ migrate_up:
 migrate_down:
 	migrate -database "postgres://postgres:password@0.0.0.0:5432/postgres?sslmode=disable" -path db/migrations down
 
-db_get_all:
-	psql postgres://postgres:password@0.0.0.0:5432/postgres -f sql/all.sql
-
 db_clean: 
 	psql postgres://postgres:password@0.0.0.0:5432/postgres -f sql/clean.sql
 
@@ -22,4 +19,4 @@ run:
 	./run.sh
 
 test: 
-	go test ./api
+	go test ./api -v

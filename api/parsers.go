@@ -11,6 +11,8 @@ type JobData struct {
 
 type SkillsList []string
 
+type Synonyms map[string][]string
+
 func parseJobData(body string) JobData {
 	countryRegex := regexp.MustCompile("Remote")
 	country := countryRegex.FindString(body)
@@ -28,24 +30,31 @@ func parseJobData(body string) JobData {
 	return response
 }
 
-func parseSkillData(body string) SkillsList {
+func parseSkillData(body string, skillDictionary []string, synonyms Synonyms) SkillsList {
 	skills := make([]string, 0)
-
-	// TODO: Convert to slice
-	// TODO: Pull as reference from DB
-	skillDictionary := [100]string{
-		"Azure SQL",
-		"Terraform",
-		"Ansible",
-		"Linux",
-		"GitHub Actions",
-	}
-
+	caseSensitivity := "(?i)"
 	for _, skillSearch := range skillDictionary {
-		skillRegex := regexp.MustCompile(skillSearch)
+		found := false
+
+		// Search for skill
+		regex := caseSensitivity + `[>\s]` + skillSearch
+		skillRegex := regexp.MustCompile(regex)
 		skill := skillRegex.FindString(body)
-		if len(skill) != 0 {
-			skills = append(skills, skill)
+		if len(skill) > 0 {
+			found = true
+		}
+
+		// Search for synonyms of skill
+		for _, synonym := range synonyms[skillSearch] {
+			regex := caseSensitivity + `[>\s]` + synonym
+			skillRegex := regexp.MustCompile(regex)
+			skill := skillRegex.FindString(body)
+			if len(skill) > 0 {
+				found = true
+			}
+		}
+		if found {
+			skills = append(skills, skillSearch)
 		}
 	}
 
