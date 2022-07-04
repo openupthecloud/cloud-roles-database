@@ -26,8 +26,9 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 - [ ] Fix regex issues with Go / AI / Java / JavaScript (select only body?)
 - [ ] Read through some of the automated resumes, make sure to capture all skills
 
+- [ ] Cache responses from the job descriptions (so you don't have to re-fetch)
 - [ ] Update the README with getting started instructions
-- [ ] Backup Postgres database
+- [x] Backup Postgres database (https://eggerapps.at/postico/docs/v1.4.1/import-export.html)
 - [ ] Catch and log errors
 
 **Tidy up**

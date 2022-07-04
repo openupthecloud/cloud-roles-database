@@ -44,13 +44,13 @@ CREATE TYPE skill_category AS ENUM(
 );
 
 CREATE TABLE skills(
-   skill varchar(255) PRIMARY KEY,
+   skill TEXT PRIMARY KEY,
    category skill_category
 );
 
 CREATE TABLE synonyms(
-   skill varchar(255) REFERENCES skills(skill),
-   synonym varchar(255)
+   skill TEXT REFERENCES skills(skill),
+   synonym TEXT
 );
 
 INSERT INTO skills VALUES ('Kubernetes', 'Containers');
@@ -195,14 +195,14 @@ INSERT INTO skills VALUES ('ITIL', 'Certification');
 -- Make the URL the ID (allow upsert)
 CREATE TABLE jobs(
    /* TODO: UUID format */
-   job_id varchar(255) PRIMARY KEY,
+   job_id TEXT PRIMARY KEY,
    job_title job_title,
    country countries,
-   url varchar(255) NOT NULL
+   url TEXT NOT NULL
 );
 
 -- Joining table
 CREATE TABLE job_skills(
-   job_id varchar(255) REFERENCES jobs(job_id),
-   skill varchar(255) REFERENCES skills(skill)
+   job_id TEXT REFERENCES jobs(job_id),
+   skill TEXT REFERENCES skills(skill)
 );

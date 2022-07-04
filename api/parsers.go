@@ -24,6 +24,7 @@ func parseJobData(body string) JobData {
 	jobTitleRegex := regexp.MustCompile(`Cloud Engineer|Site Reliability Engineer|Platform Engineer|DevOps Engineer|Solutions Architect|Support Engineer|IT Engineer|Security Engineer|Infrastructure Engineer|Backend Engineer|Software Developer|Cloud Operations`)
 	job_title := jobTitleRegex.FindString(body)
 	fmt.Println("Inserting job title:", job_title)
+	fmt.Println("Inserting country:", country)
 	response := JobData{
 		country:   country,
 		job_title: job_title,
