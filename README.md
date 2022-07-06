@@ -10,7 +10,7 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 * `make db_clean && make migrate_up && make run`
 * `make run && make db_get_all`
 
-**Todo:**
+**Setup data/database:**
 
 - [x] Connect Postico locally
 - [x] Automate the import of 5 resumes
@@ -18,20 +18,25 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 - [x] Do a full import of all skills on each resume
 - [x] Pull URLs from a text file (break new line)
 - [x] Automate the list collection of the URLs
-
 - [x] Add skill synonym support ("AWS Lambda", "Lambda", etc) and upper/lower for skills
-- [ ] Add title synonym support ("Cloud Engineer", etc)
+- [ ] Fix **regex issues** with Go / AI / Java / JavaScript (select only body?)
+- [ ] Write scripts to pull from different data sources
+- [ ] Read through some of the automated resumes, make sure to capture all skills
+- [ ] Cache responses from the job descriptions (so you don't have to re-fetch)
+- [x] Backup Postgres database (https://eggerapps.at/postico/docs/v1.4.1/import-export.html)
+
+**Optional extra data**
 - [ ] Update the information on certifications
 - [ ] Update the information on niche cloud providers (digital ocean, etc)
-- [ ] Fix regex issues with Go / AI / Java / JavaScript (select only body?)
-- [ ] Read through some of the automated resumes, make sure to capture all skills
-
-- [ ] Cache responses from the job descriptions (so you don't have to re-fetch)
-- [ ] Update the README with getting started instructions
-- [x] Backup Postgres database (https://eggerapps.at/postico/docs/v1.4.1/import-export.html)
-- [ ] Catch and log errors
+- [ ] Extra data from specific companies, e.g. FAANG companies (and compare skills)
+  - [ ] Something similar to: https://stackshare.io/stacks
+- [ ] Extract salary information
+- [ ] Analysis on role overlaps
+  - [ ] Kubernetes vs Serverless / AWS Lambda
 
 **Tidy up**
+- [ ] Catch and log errors
+- [ ] Update the README with getting started instructions
 - [ ] Make URL the ID
 - [ ] Fix issues with adjoining words (whitespace)
 - [ ] Extract years of experience?
@@ -40,4 +45,8 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 
 **Converting to Web App**
 - [ ] Find way to move the database to static storage
+  - [ ] https://github.com/tmarois/Filebase
+  - [ ] https://githubnext.com/projects/flat-data
 - [ ] Design the interface (and ways to query the data)
+  - [ ] Similar to: https://nomadlist.com/
+  - [ ] Structured around roles
