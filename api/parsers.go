@@ -18,7 +18,7 @@ func parseJobData(body string) JobData {
 	countryRegex := regexp.MustCompile("Remote")
 	country := countryRegex.FindString(body)
 
-	fmt.Println(body)
+	// fmt.Println(body)
 
 	// TODO: Extract from DB reference data
 	jobTitleRegex := regexp.MustCompile(`Cloud Engineer|Site Reliability Engineer|Platform Engineer|DevOps Engineer|Solutions Architect|Support Engineer|IT Engineer|Security Engineer|Infrastructure Engineer|Backend Engineer|Software Developer|Cloud Operations`)

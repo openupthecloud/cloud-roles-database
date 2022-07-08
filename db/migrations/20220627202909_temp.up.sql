@@ -6,6 +6,7 @@ CREATE TYPE job_title AS ENUM(
    'Cloud Engineer',
    'Platform Engineer',
    'DevOps Engineer',
+   'Data Engineer',
    'Support Engineer',
    'IT Engineer',
    'Solutions Architect',
@@ -205,4 +206,11 @@ CREATE TABLE jobs(
 CREATE TABLE job_skills(
    job_id TEXT REFERENCES jobs(job_id),
    skill TEXT REFERENCES skills(skill)
+);
+
+--
+CREATE TABLE jobs_cache(
+   /* TODO: UUID format */
+   job_id TEXT REFERENCES jobs(job_id),
+   content TEXT
 );

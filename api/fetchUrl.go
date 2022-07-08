@@ -13,7 +13,7 @@ func fetchUrl(url string) string {
 		fmt.Println(err)
 	}
 
-	fmt.Println(resp)
+	// fmt.Println(resp)
 
 	body, err := ioutil.ReadAll(resp.Body)
 	return string(body)

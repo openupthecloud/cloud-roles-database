@@ -9,6 +9,14 @@ import (
 	_ "github.com/lib/pq"
 )
 
+const (
+	host     = "localhost"
+	port     = 5432
+	user     = "postgres"
+	password = "password"
+	dbname   = "postgres"
+)
+
 func getDb() *sql.DB {
 	// TODO: Extract DB connection to separate function
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
@@ -17,6 +25,39 @@ func getDb() *sql.DB {
 		panic(err)
 	}
 	return db
+}
+
+func getCache(url string) string {
+	// TODO: Don't close connection twice
+	db := getDb()
+	defer db.Close()
+	fmt.Println("Checking cache for:", url)
+	sqlStatement := `SELECT content FROM jobs_cache INNER JOIN jobs ON jobs.job_id = jobs_cache.job_id WHERE jobs.url = $1`
+	rows, err := db.Query(sqlStatement, url)
+	if err != nil {
+		panic(err)
+	}
+	content := ""
+	for rows.Next() {
+		err := rows.Scan(&content)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	return content
+}
+
+func storeCache(job_id string, body string) {
+	// TODO: Don't close connection twice
+	db := getDb()
+	defer db.Close()
+	cache := ""
+	sqlStatement := `INSERT INTO jobs_cache VALUES ($1, $2) RETURNING content`
+	err := db.QueryRow(sqlStatement, job_id, body).Scan(&cache)
+	if err != nil {
+		panic(err)
+	}
+	return
 }
 
 func getSynonyms() Synonyms {

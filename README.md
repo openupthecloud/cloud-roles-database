@@ -10,6 +10,8 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 * `make db_clean && make migrate_up && make run`
 * `make run && make db_get_all`
 
+## Backlog
+
 **Setup data/database:**
 
 - [x] Connect Postico locally
@@ -22,10 +24,30 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 - [ ] Fix **regex issues** with Go / AI / Java / JavaScript (select only body?)
 - [ ] Write scripts to pull from different data sources
 - [ ] Read through some of the automated resumes, make sure to capture all skills
-- [ ] Cache responses from the job descriptions (so you don't have to re-fetch)
+- [x] Cache responses from the job descriptions (so you don't have to re-fetch)
 - [x] Backup Postgres database (https://eggerapps.at/postico/docs/v1.4.1/import-export.html)
 
+**Ingest**
+- [x] Solutions Architect
+- [x] Cloud Engineer
+- [ ] Platform Engineer
+- [ ] DevOps Engineer
+- [ ] Data Engineer
+- [ ] Support Engineer
+- [ ] IT Engineer
+- [ ] Security Engineer
+- [ ] Infrastructure Engineer
+- [ ] Backend Engineer
+- [ ] Site Reliability Engineer
+- [ ] Cloud Operations
+- [ ] Software Developer
+
 **Optional extra data**
+- [ ] Add "Data Engineer" role
+- [ ] Go through Stack Overflow 2022 (update languages, databases, etc)
+- [ ] How much does work experience matter / asked for?
+- [ ] Location (and does this affect the data)?
+- [ ] Update information on languages and monitoring
 - [ ] Update the information on certifications
 - [ ] Update the information on niche cloud providers (digital ocean, etc)
 - [ ] Extra data from specific companies, e.g. FAANG companies (and compare skills)
@@ -35,6 +57,7 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
   - [ ] Kubernetes vs Serverless / AWS Lambda
 
 **Tidy up**
+- [ ] Add log verbosity levels
 - [ ] Catch and log errors
 - [ ] Update the README with getting started instructions
 - [ ] Make URL the ID
