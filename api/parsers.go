@@ -21,7 +21,7 @@ func parseJobData(body string) JobData {
 	// fmt.Println(body)
 
 	// TODO: Extract from DB reference data
-	jobTitleRegex := regexp.MustCompile(`Cloud Engineer|Site Reliability Engineer|Platform Engineer|DevOps Engineer|Solutions Architect|Support Engineer|IT Engineer|Security Engineer|Infrastructure Engineer|Backend Engineer|Software Developer|Cloud Operations`)
+	jobTitleRegex := regexp.MustCompile(`Cloud Engineer|Site Reliability Engineer|Platform Engineer|DevOps Engineer|Solutions Architect|Support Engineer|IT Engineer|Security Engineer|Infrastructure Engineer|Backend Engineer|Engineering Manager|Software Developer|Software Engineer|Cloud Operations|Data Engineer|Security Architect|Network Engineer|Enterprise Architect`)
 	job_title := jobTitleRegex.FindString(body)
 	fmt.Println("Inserting job title:", job_title)
 	fmt.Println("Inserting country:", country)
