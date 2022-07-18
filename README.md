@@ -53,6 +53,8 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 - [ ] Extra data from specific companies, e.g. FAANG companies (and compare skills)
   - [ ] Something similar to: https://stackshare.io/stacks
 - [ ] Extract salary information
+- [ ] Difference in skills between seniority
+- [ ] What soft skills are asked for?
 - [ ] Analysis on role overlaps
   - [ ] Kubernetes vs Serverless / AWS Lambda
 
