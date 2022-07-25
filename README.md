@@ -13,7 +13,6 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 ## Backlog
 
 **Setup data/database:**
-
 - [x] Connect Postico locally
 - [x] Automate the import of 5 resumes
 - [x] Add one of each of the roles
@@ -56,6 +55,12 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 - [ ] Find way to move the database to static storage
   - [ ] https://github.com/tmarois/Filebase
   - [ ] https://githubnext.com/projects/flat-data
-- [ ] Design the interface (and ways to query the data)
+  - [ ] Look at script to convert queries to JSON
+- [x] Design the interface (and ways to query the data)
   - [ ] Similar to: https://nomadlist.com/
   - [ ] Structured around roles
+- [ ]  Create basic landing page (fonts, styling, etc)
+- [ ]  Deploy it
+- [ ]  Create roles tile
+- [ ]  Create role detail page (based on YAML)
+- [ ]  Create insights section
