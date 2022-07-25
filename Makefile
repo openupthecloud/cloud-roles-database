@@ -13,7 +13,7 @@ db_clean:
 	psql postgres://postgres:password@0.0.0.0:5432/postgres -f sql/clean.sql
 
 build: 
-	go build -o run-api ./backend/api && go build -o run-queries ./backend/export-queries/script && go build -o run-frontend ./frontend/src
+	go build -o run-api ./backend/api && go build -o run-queries ./backend/export-queries/script && go build -o run-frontend ./frontend
 
 site:	
 	./run-frontend && python3 -m http.server 3000 --directory docs

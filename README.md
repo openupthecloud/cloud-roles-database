@@ -43,6 +43,7 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 
 **Tidy up**
 - [ ] Add log verbosity levels
+- [ ] Add CI suite
 - [ ] Catch and log errors
 - [ ] Update the README with getting started instructions
 - [ ] Make URL the ID
@@ -59,8 +60,8 @@ The binary `.main` takes a URL, parses any skills and inserts them into the data
 - [x] Design the interface (and ways to query the data)
   - [ ] Similar to: https://nomadlist.com/
   - [ ] Structured around roles
+- [x]  Deploy it
 - [ ]  Create basic landing page (fonts, styling, etc)
-- [ ]  Deploy it
 - [ ]  Create roles tile
 - [ ]  Create role detail page (based on YAML)
 - [ ]  Create insights section
