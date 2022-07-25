@@ -13,7 +13,7 @@ db_clean:
 	psql postgres://postgres:password@0.0.0.0:5432/postgres -f sql/clean.sql
 
 build: 
-	go build -o main ./backend/api
+	go build -o run-api ./backend/api && go build -o run-queries ./backend/export-queries/script
 
 run: 
 	./run.sh
