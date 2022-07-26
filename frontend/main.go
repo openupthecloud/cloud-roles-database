@@ -9,28 +9,39 @@ import (
 )
 
 func main() {
-
-	// TODO: Consolidate duplicate types in package
 	type Role struct {
 		Title string `json:"Title"`
 	}
+	type Skill struct {
+		Skill      string `json:"Skill"`
+		Category   string `json:"Category"`
+		Total      string `json:"Total"`
+		Percentage string `json:"Percentage"`
+	}
 	type TemplateArguments struct {
-		Roles []Role
+		Roles       []Role
+		Top10Skills []Skill
 	}
 	var templateArguments TemplateArguments
 
 	// TODO: Iterate over directory
-	jsonFile, err := os.Open("backend/export-queries/results/roles.json")
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-	json.Unmarshal(byteValue, &templateArguments.Roles)
+	// TODO: Consolidate duplicate types in package
 
+	rolesFile, err := os.Open("backend/export-queries/results/roles.json")
+	rolesByteValue, _ := ioutil.ReadAll(rolesFile)
+	json.Unmarshal(rolesByteValue, &templateArguments.Roles)
 	if err != nil {
 		fmt.Println(err)
 	}
+	defer rolesFile.Close()
 
-	fmt.Println("Successfully Opened users.json")
-	// defer the closing of our jsonFile so that we can parse it later on
-	defer jsonFile.Close()
+	topSkillsFile, err := os.Open("backend/export-queries/results/top-10-skills.json")
+	topSkillsByteValue, _ := ioutil.ReadAll(topSkillsFile)
+	json.Unmarshal(topSkillsByteValue, &templateArguments.Top10Skills)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer rolesFile.Close()
 
 	// Compile the template (without data)
 	t, err := template.New("website").Parse(`
@@ -60,7 +71,12 @@ func main() {
 			{{end}}
 			<h2> Insights </h2>
 			<div class="tile">
-				Lorem Ipsum
+			<h2> Top 10 Skills (All Cloud Jobs) </h2>
+			{{range .Top10Skills}}
+				<div>
+				{{.Percentage}}% - {{.Skill}} - {{.Category}} ({{.Total}} total)
+				</div>
+			{{end}}
 			</div>
 		</div>
 	</body> 

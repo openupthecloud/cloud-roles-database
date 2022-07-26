@@ -1,67 +1,42 @@
 
 # Cloud Job Roles Database
 
-This project creates a SQL database to gather data on cloud tech job descriptions. 
+The purpose of this project is to ingest open-source information, such as information hosted on job descriptions, load it into a SQL (Postgres) database and host the information for analysis. Currently, the project runs no infrastructure so runs a three step process: 
 
-The binary `.main` takes a URL, parses any skills and inserts them into the database.
+1. **Ingest** (`make run-ingest`) - Starts the crawling for data (depends upon `make db_migrate` already being invoked to setup the DB).
+2. **Compilation** (`make run-compilation`) - Compiles SQL queries into static JSON files used for rendering. 
+3. **Rendering** as HTML (`make run-render`) - This command renders the JSON files as a static site. 
 
-## Getting Started
+### General roadmap
 
-* `make db_clean && make migrate_up && make run`
-* `make run && make db_get_all`
-
-## Backlog
-
-**Setup data/database:**
-- [x] Connect Postico locally
-- [x] Automate the import of 5 resumes
-- [x] Add one of each of the roles
-- [x] Do a full import of all skills on each resume
-- [x] Pull URLs from a text file (break new line)
-- [x] Automate the list collection of the URLs
-- [x] Add skill synonym support ("AWS Lambda", "Lambda", etc) and upper/lower for skills
-- [ ] Fix **regex issues** with Go / AI / Java / JavaScript (select only body?)
-- [ ] Write scripts to pull from different data sources
-- [ ] Read through some of the automated resumes, make sure to capture all skills
-- [x] Cache responses from the job descriptions (so you don't have to re-fetch)
-- [x] Backup Postgres database (https://eggerapps.at/postico/docs/v1.4.1/import-export.html)
-
-**Optional extra data**
-- [ ] Go through Stack Overflow 2022 (update languages, databases, etc)
-- [ ] How much does work experience matter / asked for?
-- [ ] Location (and does this affect the data)?
-- [ ] Update information on languages and monitoring
-- [ ] Update the information on certifications
-- [ ] Update the information on niche cloud providers (digital ocean, etc)
-- [ ] Extra data from specific companies, e.g. FAANG companies (and compare skills)
-- [ ] Something similar to: https://stackshare.io/stacks
 - [ ] Extract salary information
 - [ ] Difference in skills between seniority
 - [ ] What soft skills are asked for?
 - [ ] Analysis on role overlaps
 - [ ] Kubernetes vs Serverless / AWS Lambda
+- [ ] Go through Stack Overflow 2022 (update languages, databases, etc)
+- [ ] How much does work experience matter / asked for
+- [ ] Location (and does this affect the data)?
+- [ ] Update information on languages and monitoring
+- [ ] Update the information on certifications
+- [ ] Update the information on niche cloud providers (digital ocean, etc)
+- [ ] Extra data from specific companies, e.g. FAANG companies (and compare skills)
 
-**Tidy up**
-- [ ] Add log verbosity levels
-- [ ] Add CI suite
-- [ ] Catch and log errors
-- [ ] Update the README with getting started instructions
-- [ ] Make URL the ID
-- [ ] Fix issues with adjoining words (whitespace)
-- [ ] Extract years of experience?
-- [ ] Handle error states, such as incorrect parse, etc
+### Ingest
+
+- [ ] Fix **regex issues** with Go / AI / Java / JavaScript (select only body?)
+- [ ] Move types into shared directory
+- [ ] Better logging (verbosity levels) and error state handling
+- [ ] Make URL the ID of the jobs?
 - [ ] Add unit tests for various resumes
 
-**Converting to Web App**
-- [ ] Find way to move the database to static storage
-  - [ ] https://github.com/tmarois/Filebase
-  - [ ] https://githubnext.com/projects/flat-data
-  - [ ] Look at script to convert queries to JSON
-- [x] Design the interface (and ways to query the data)
-  - [ ] Similar to: https://nomadlist.com/
-  - [ ] Structured around roles
-- [x]  Deploy it
+### Compilation
+
+- [ ] Create a file per file to render
+
+### Rendering
+
 - [ ]  Create basic landing page (fonts, styling, etc)
-- [ ]  Create roles tile
-- [ ]  Create role detail page (based on YAML)
+- [ ]  Create roles tile (with basic details)
+- [ ]  Create role detail page (based on a YAML config)
 - [ ]  Create insights section

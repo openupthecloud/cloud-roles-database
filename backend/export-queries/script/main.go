@@ -34,10 +34,6 @@ func getDb() *sql.DB {
 	return db
 }
 
-type Role struct {
-	Title string
-}
-
 func main() {
 	fmt.Println("Starting export of JSON files for queries")
 	files, err := ioutil.ReadDir(queryDirectory)
@@ -63,22 +59,55 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		var results []*Role
-		for rows.Next() {
-			r := new(Role)
-			err := rows.Scan(&r.Title)
-			if err != nil {
-				log.Fatal(err)
-			}
-			results = append(results, r)
-		}
-		result, err := json.Marshal(results)
 
-		// fmt.Println(string(result))
-		fmt.Println("Writing results from SQL file: ", fileNameJSONExtension)
-		err = os.WriteFile(resultsDirectory+"/"+fileNameJSONExtension, result, 0666)
-		if err != nil {
-			panic(err)
+		// TODO: Find someway to parse the files more cleanly
+		if fileNameSQLExtension == "roles.sql" {
+			type Role struct {
+				Title string
+			}
+			var results []*Role
+			for rows.Next() {
+
+				r := new(Role)
+				err := rows.Scan(&r.Title)
+				if err != nil {
+					log.Fatal(err)
+				}
+				results = append(results, r)
+
+			}
+			result, err := json.Marshal(results)
+			fmt.Println("Writing results from SQL file: ", fileNameJSONExtension)
+			err = os.WriteFile(resultsDirectory+"/"+fileNameJSONExtension, result, 0666)
+			if err != nil {
+				panic(err)
+			}
+		} else if fileNameSQLExtension == "top-10-skills.sql" {
+			type Skill struct {
+				Skill      string
+				Category   string
+				Total      string
+				Percentage string
+			}
+			var results []*Skill
+			for rows.Next() {
+
+				r := new(Skill)
+				err := rows.Scan(&r.Skill, &r.Category, &r.Total, &r.Percentage)
+				if err != nil {
+					log.Fatal(err)
+				}
+				results = append(results, r)
+
+			}
+			result, err := json.Marshal(results)
+			fmt.Println("Writing results from SQL file: ", fileNameJSONExtension)
+			err = os.WriteFile(resultsDirectory+"/"+fileNameJSONExtension, result, 0666)
+			if err != nil {
+				panic(err)
+			}
+		} else {
+			panic("No parsing sequence for file: " + fileNameSQLExtension)
 		}
 	}
 }
