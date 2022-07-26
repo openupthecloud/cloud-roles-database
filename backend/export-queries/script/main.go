@@ -34,9 +34,8 @@ func getDb() *sql.DB {
 	return db
 }
 
-type Result struct {
-	Skill   string
-	Synonym string
+type Role struct {
+	Title string
 }
 
 func main() {
@@ -64,10 +63,10 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		var results []*Result
+		var results []*Role
 		for rows.Next() {
-			r := new(Result)
-			err := rows.Scan(&r.Skill, &r.Synonym)
+			r := new(Role)
+			err := rows.Scan(&r.Title)
 			if err != nil {
 				log.Fatal(err)
 			}

@@ -1,0 +1,1 @@
+SELECT unnest(enum_range(NULL::job_title)) as Title

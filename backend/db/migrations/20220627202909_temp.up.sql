@@ -15,7 +15,6 @@ CREATE TYPE job_title AS ENUM(
    'Engineering Manager',
    'Network Engineer',
    'Software Engineer',
-   'Security Architect',
    'Enterprise Architect',
    'Infrastructure Engineer',
    'Backend Engineer',

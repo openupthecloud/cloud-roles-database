@@ -10,7 +10,7 @@ migrate_down:
 	migrate -database "postgres://postgres:password@0.0.0.0:5432/postgres?sslmode=disable" -path backend/db/migrations down
 
 db_clean: 
-	psql postgres://postgres:password@0.0.0.0:5432/postgres -f sql/clean.sql
+	psql postgres://postgres:password@0.0.0.0:5432/postgres -f backend/sql/clean.sql
 
 build: 
 	go build -o run-api ./backend/api && go build -o run-queries ./backend/export-queries/script && go build -o run-frontend ./frontend
