@@ -1,47 +1,19 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
 	"html/template"
-	"io/ioutil"
 	"os"
 )
 
+type TemplateArguments struct {
+	Roles       []Role
+	Top10Skills []Skill
+}
+
 func main() {
-	type Role struct {
-		Title string `json:"Title"`
-	}
-	type Skill struct {
-		Skill      string `json:"Skill"`
-		Category   string `json:"Category"`
-		Total      string `json:"Total"`
-		Percentage string `json:"Percentage"`
-	}
-	type TemplateArguments struct {
-		Roles       []Role
-		Top10Skills []Skill
-	}
 	var templateArguments TemplateArguments
-
-	// TODO: Iterate over directory
-	// TODO: Consolidate duplicate types in package
-
-	rolesFile, err := os.Open("backend/export-queries/results/roles.json")
-	rolesByteValue, _ := ioutil.ReadAll(rolesFile)
-	json.Unmarshal(rolesByteValue, &templateArguments.Roles)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer rolesFile.Close()
-
-	topSkillsFile, err := os.Open("backend/export-queries/results/top-10-skills.json")
-	topSkillsByteValue, _ := ioutil.ReadAll(topSkillsFile)
-	json.Unmarshal(topSkillsByteValue, &templateArguments.Top10Skills)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer rolesFile.Close()
+	roles(&templateArguments)
+	topSkills(&templateArguments)
 
 	// Compile the template (without data)
 	t, err := template.New("website").Parse(`
