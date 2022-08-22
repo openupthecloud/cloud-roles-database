@@ -2,21 +2,43 @@
 	<html>
 	<head> 
 		<style> 
+			@import url('https://fonts.googleapis.com/css?family=Montserrat:900');
+			@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
+			h1, h2, h3 {
+				font-family: Montserrat;
+				text-transform: uppercase;
+				color: #17244b;
+			}
 			.container { 
 				max-width: 900px;
 				margin: auto;
 			}
 			.tile {
-				padding: 10px;
-    			border: 1px solid black;
-    			margin-bottom: 20px;
+				background-color: white;
+				padding: 30px;
+				border: 2px solid lightgrey;
+				border-radius: 3px;
+				margin-bottom: 20px;
+				box-shadow: 5px 5px 5px lightgrey;
+			}
+			.container h2 {
+				border-bottom: 6px solid #37bae5;
+				padding-bottom: 5px;
+			}
+			
+			body {
+				margin: 0px;
+				background: #e7e7e7;
+				font-size: 1.5em;
+				font-family: Lora;
 			}
 		</style>
 	</head>
 	<body> 
 		<div class="container">
-			<h1> Open Up The Cloud Job Roles Database </h1>
-			<p> <strong>2345</strong> roles analysed </p>
+			<br />
+			<h1> Open Tech Data </h1>
+			<p> Making key skills for technology jobs more accessible, open and transparent. Find the project on <a target="_blank" href="https://github.com/openupthecloud/cloud-roles-database">GitHub</a>. Currently <strong>2345</strong> roles analysed </p>
 			<h2> Roles </h2>
 			
 				<div class="tile">
@@ -93,7 +115,7 @@
 			
 			<h2> Insights </h2>
 			<div class="tile">
-			<h2> Top 10 Skills (All Cloud Jobs) </h2>
+			<h3> Top 10 Cloud Skills </h3>
 			
 				<div>
 				68% - AWS - Cloud Platform (1479 total)
@@ -136,6 +158,8 @@
 				</div>
 			
 			</div>
+			<p> Made with &#10084;&#65039; by <a target="_blank" href="https://openupthecloud.com/">Open Up The Cloud</a></p>
+			<br /><br /><br />
 		</div>
 	</body> 
 	</html>

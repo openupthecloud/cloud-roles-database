@@ -1,6 +1,9 @@
 tasks:
-  - name: install-docker
+  - name: database
     command: sudo apt-get update && sudo apt-get -y install postgresql && curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz && sudo mv migrate /usr/bin && docker-compose up
+
+  - name: front-end
+    command: make build && make run-render
 
 vscode:
   extensions:
