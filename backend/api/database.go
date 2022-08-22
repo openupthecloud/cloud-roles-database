@@ -31,7 +31,7 @@ func getCache(url string) string {
 	// TODO: Don't close connection twice
 	db := getDb()
 	defer db.Close()
-	fmt.Println("Checking cache for:", url)
+	// fmt.Println("Checking cache for:", url)
 	sqlStatement := `SELECT content FROM jobs_cache INNER JOIN jobs ON jobs.job_id = jobs_cache.job_id WHERE jobs.url = $1`
 	rows, err := db.Query(sqlStatement, url)
 	if err != nil {

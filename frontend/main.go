@@ -7,16 +7,22 @@ import (
 
 type TemplateArguments struct {
 	Roles       []Role
+	RoleSkills  []RoleSkills
 	Top10Skills []Skill
 }
 
 func main() {
 	var templateArguments TemplateArguments
 	roles(&templateArguments)
+	roleSkills(&templateArguments)
 	topSkills(&templateArguments)
 
 	// Compile the template (without data)
 	t, err := template.New("website").Parse(`
+
+	{{ $roles := .Roles }}
+	{{ $roleSkills := .RoleSkills }}
+
 	<html>
 	<head> 
 		<style> 
@@ -58,11 +64,22 @@ func main() {
 			<h1> Open Tech Data </h1>
 			<p> Making key skills for technology jobs more accessible, open and transparent. Find the project on <a target="_blank" href="https://github.com/openupthecloud/cloud-roles-database">GitHub</a>. Currently <strong>2345</strong> roles analysed </p>
 			<h2> Roles </h2>
-			{{range .Roles}}
+			{{range $role :=  $roles}}
 				<div class="tile">
-					<div>{{.Title}}</div>
+					<h3>{{$role.Title}}</h3>
+					<ul> 
+						{{range $roleSkill := $roleSkills}}		
+							{{if eq $roleSkill.Title $role.Title }}
+								<li>
+									<strong>{{$roleSkill.Percentage}}%</strong>
+									{{$roleSkill.Skill}}
+								</li>
+							{{end}}
+						{{end}}
+					</ul>
 				</div>
 			{{end}}
+			
 			<h2> Insights </h2>
 			<div class="tile">
 			<h3> Top 10 Cloud Skills </h3>

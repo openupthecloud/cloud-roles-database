@@ -8,7 +8,6 @@ CREATE TYPE job_title AS ENUM(
    'DevOps Engineer',
    'Data Engineer',
    'Support Engineer',
-   'IT Engineer',
    'Solutions Architect',
    'Security Engineer',
    'Security Architect',

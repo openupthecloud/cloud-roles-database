@@ -12,7 +12,7 @@ func main() {
 
 	// TODO: Cache contents for performance (and testing)
 	url := os.Args[1]
-	fmt.Println("Starting import for: ", url)
+	// fmt.Println("Starting import for: ", url)
 
 	// Step 1: Fetch URL jd_content
 	jd_cache := getCache(url)
@@ -43,5 +43,5 @@ func main() {
 	skills := parseSkillData(jd_content, skillsReference, synonyms)
 	insertSkill(skills, job_id)
 
-	fmt.Println("Successfully imported: ", url)
+	// fmt.Println("Successfully imported: ", url)
 }
