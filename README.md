@@ -43,15 +43,15 @@ Currently, the project hosts no database, but runs a three step process:
   - [ ] cloud provider
 - [ ] Should you learn one cloud provider or two (and the overlap)?
 - [ ] Which roles in the cloud use Kubernetes?
+- [ ] Which is the most popular certification?
 
 ### Ingest
 
-- [ ] Fix **regex issues** with Go / AI / Java / JavaScript (select only body?)
-- [ ] Move types into shared directory
-- [ ] Better logging (verbosity levels) and error state handling
-- [ ] Make URL the ID of the jobs?
-- [ ] Add historical data support
-- [ ] Add unit tests for various resumes
+- [ ] Fix regex for Go / AI / Java / JavaScript (e.g. select only body?)
+- [ ] Better logging (verbosity levels) and error state handling for ingest
+- [ ] Make URL the ID of the jobs in database
+- [ ] Add historical date and data support
+- [ ] Add unit tests for various resumes to test the import logic
 
 ### Compilation
 
