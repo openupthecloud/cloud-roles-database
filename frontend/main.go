@@ -33,6 +33,9 @@ func main() {
 				text-transform: uppercase;
 				color: #17244b;
 			}
+			.center {
+				text-align: center;
+			}
 			.container { 
 				max-width: 900px;
 				margin: auto;
@@ -89,7 +92,16 @@ func main() {
 				</div>
 			{{end}}
 			</div>
-			<p> Made with &#10084;&#65039; by <a target="_blank" href="https://openupthecloud.com/">Open Up The Cloud</a></p>
+			<p class="center"> Made with &#10084;&#65039; by <a target="_blank" href="https://openupthecloud.com/">Open Up The Cloud</a></p>
+			<p class="center"> 
+				<a target="_blank" href="https://openupthecloud.com/">Blog</a> 
+				&#9632;
+				<a target="_blank" href="https://www.youtube.com/c/OpenUpTheCloud">YouTube</a>
+				&#9632;
+				<a target="_blank" href="https://twitter.com/openupthecloud">Twitter</a>
+				&#9632;
+				<a target="_blank" href="https://www.instagram.com/openupthecloud">Instagram</a>
+			</p>
 			<br /><br /><br />
 		</div>
 	</body> 
