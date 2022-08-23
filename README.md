@@ -1,26 +1,48 @@
 
-# Cloud Job Roles Database
+# Open Cloud Data
 
-The purpose of this project is to ingest open-source information, such as information hosted on job descriptions, load it into a SQL (Postgres) database and host the information for analysis. Currently, the project runs no infrastructure so runs a three step process: 
+## Motivation
+
+I created this project after getting asked many questions about getting into the cloud industry, and rather than giving my own anecdotal experience too much, I was curious to gather data. I decided one of the easiest places to start would be with publicly available job description information. I started [first by gathering data into a spreadsheet](https://www.youtube.com/watch?v=IjYo-LS6lVY), and whilst that was a useful learning exercise, that process was painful and slow... so I automated it. In future, this project can be extended with additional information such as from surveys. 
+
+## Getting Started
+
+This project ingests open-source information, such as information hosted on job descriptions, loads it into a SQL (Postgres) database and creates a website with the information for analysis. 
+
+Currently, the project hosts no database, but runs a three step process: 
 
 1. **Ingest** (`make run-ingest`) - Starts the crawling for data (depends upon `make db_migrate` already being invoked to setup the DB).
-2. **Compilation** (`make run-compilation`) - Compiles SQL queries into static JSON files used for rendering. 
+2. **Compilation** (`make run-query-compilation`) - Compiles SQL queries into static JSON files used for rendering. 
 3. **Rendering** as HTML (`make run-render`) - This command renders the JSON files as a static site. 
 
-### General roadmap
+### Roadmap
 
-- [ ] Extract salary information
-- [ ] Difference in skills between seniority
-- [ ] What soft skills are asked for?
-- [ ] Analysis on role overlaps
-- [ ] Kubernetes vs Serverless / AWS Lambda
-- [ ] Go through Stack Overflow 2022 (update languages, databases, etc)
-- [ ] How much does work experience matter / asked for
-- [ ] Location (and does this affect the data)?
+### Data Ingest
+
+- [ ] Salary & pay information
+- [ ] Seniority breakdowns
+- [ ] Soft skills
+- [ ] Role overlap
+- [ ] Specialties, e.g. Kmubernetes vs Serverless
+- [ ] Update reference data based on Stack Overflow survey (e.g. languages and databases)
+- [ ] Work experience
+- [ ] Location
 - [ ] Update information on languages and monitoring
-- [ ] Update the information on certifications
-- [ ] Update the information on niche cloud providers (digital ocean, etc)
-- [ ] Extra data from specific companies, e.g. FAANG companies (and compare skills)
+- [ ] Certifications
+- [ ] Niche cloud providers (digital ocean, etc)
+- [ ] FAANG data
+
+### Insights
+
+- [ ] Delta of the cloud roles to the main data set
+- [ ] Most popular practices (not skills)
+- [ ] Most popular: 
+  - [ ] databases
+  - [ ] infra as code tools 
+  - [ ] programming language
+  - [ ] cloud provider
+- [ ] Should you learn one cloud provider or two (and the overlap)?
+- [ ] Which roles in the cloud use Kubernetes?
 
 ### Ingest
 
@@ -28,15 +50,15 @@ The purpose of this project is to ingest open-source information, such as inform
 - [ ] Move types into shared directory
 - [ ] Better logging (verbosity levels) and error state handling
 - [ ] Make URL the ID of the jobs?
+- [ ] Add historical data support
 - [ ] Add unit tests for various resumes
 
 ### Compilation
 
 - [ ] Create a file per file to render
+- [ ] Simplify SQL to JSON export (e.g. direct in Postgres)
 
 ### Rendering
 
-- [ ]  Create basic landing page (fonts, styling, etc)
-- [ ]  Create roles tile (with basic details)
-- [ ]  Create role detail page (based on a YAML config)
-- [ ]  Create insights section
+- [ ]  Add a role detail page (based on a YAML config)
+- [ ]  Provide meta information (ingest count, role count)

@@ -7,14 +7,14 @@ db_clean:
 build: 
 	go build -o run-api ./backend/api && go build -o run-queries ./backend/export-queries/script && go build -o run-frontend ./frontend
 
+run-ingest: 
+	make build && ./run.sh
+
 run-query-compilation:	
-	./run-queries
+	make build && ./run-queries
 
 run-render:	
-	./run-frontend && python3 -m http.server 3000 --directory docs
-
-run-ingest: 
-	./run.sh
+	make build && ./run-frontend && python3 -m http.server 3000 --directory docs
 
 test: 
 	go test ./backend/api -v
